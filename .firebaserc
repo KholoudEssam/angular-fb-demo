@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-fb-demo-1": {
+      "hosting": {
+        "angular-fb-demo": [
+          "angular-fb-demo-1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-fb-demo-1"
+  }
+}

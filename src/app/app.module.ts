@@ -13,11 +13,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
-import { TaskComponent } from './task/task.component';
-import { TaskDialogComponent } from './task-dialog/task-dialog.component';
+import { TaskComponent } from './components/task/task.component';
+import { TaskDialogComponent } from './components/task-dialog/task-dialog.component';
+
+import { environment } from '../environments/environment';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { TasksColumnComponent } from './components/tasks-column/tasks-column.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskComponent, TaskDialogComponent],
+  declarations: [AppComponent, TaskComponent, TaskDialogComponent, TasksColumnComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -30,6 +38,11 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideDatabase(() => getDatabase()),
+    // provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

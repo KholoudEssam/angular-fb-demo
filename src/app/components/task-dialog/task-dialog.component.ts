@@ -8,7 +8,7 @@ import { Task } from '../task/task';
   styleUrls: ['./task-dialog.component.css'],
 })
 export class TaskDialogComponent {
-  private backupTask: Partial<Task> = { ...this.data.task };
+  private backupTask: Task = { ...this.data.task };
 
   constructor(
     private dialogRef: MatDialogRef<TaskDialogComponent>,
@@ -16,14 +16,16 @@ export class TaskDialogComponent {
   ) {}
 
   cancel(): void {
+    this.data.task.id = this.backupTask.id;
     this.data.task.title = this.backupTask.title;
     this.data.task.description = this.backupTask.description;
-    this.dialogRef.close(this.data);
+    this.data.task.state = this.backupTask.state;
+    this.dialogRef.close(this.data.task);
   }
 }
 
 export interface TaskDialogData {
-  task: Partial<Task>;
+  task: Task;
   enableDelete: boolean;
 }
 
